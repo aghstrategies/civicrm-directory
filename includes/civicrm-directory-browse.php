@@ -242,7 +242,7 @@ class CiviCRM_Directory_Browse {
 		$url = esc_url( get_permalink( get_the_ID() ) );
 
 		// construct array of chars
-		$chars = array_merge( range( 'A', 'Z' ), range( '0', '9' ) );
+		$chars = range( 'A', 'Z' );
 
 		// construct each link
 		foreach( $chars AS $char ) {
