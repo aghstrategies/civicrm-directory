@@ -268,16 +268,12 @@ class CiviCRM_Directory_Search {
 		// init markup
 		$markup = '';
 
-		// init markup
-		if ( ! empty( $search ) ) {
+		// add heading
+		$markup = '<h3>' . __( 'Results', 'civicrm-directory' ) . '</h3>';
 
-			// add heading
-			$markup = '<h3>' . __( 'Results', 'civicrm-directory' ) . '</h3>';
-
-			// add listing
-			$markup .= $this->get_listing_markup( $results, $post_id );
-                        $markup = apply_filters('civicrm_directory_ajax_markup', $markup, $results, $letter, $post_id);
-		}
+		// add listing
+		$markup .= $this->get_listing_markup( $results, $post_id );
+                $markup = apply_filters('civicrm_directory_ajax_markup', $markup, $results, $letter, $post_id);
 
 		// add to data array
 		$data['listing'] = $markup;
