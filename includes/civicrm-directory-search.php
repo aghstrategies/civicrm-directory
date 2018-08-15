@@ -276,7 +276,7 @@ class CiviCRM_Directory_Search {
 
 			// add listing
 			$markup .= $this->get_listing_markup( $results, $post_id );
-
+                        $markup = apply_filters('civicrm_directory_ajax_markup', $markup, $results, $letter, $post_id);
 		}
 
 		// add to data array
