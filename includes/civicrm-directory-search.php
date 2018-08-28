@@ -229,8 +229,8 @@ class CiviCRM_Directory_Search {
 		// get search
 		$search = isset( $_POST['search'] ) ? trim( $_POST['search'] ) : '';
 
-		$specialization = isset( $_POST['specialization'] ) ? trim( $_POST['specialization'] ) : '';
-		$city = isset( $_POST['city'] ) ? trim( $_POST['city'] ) : '';
+		$specialization = isset( $_POST['specialization'] ) ? $_POST['specialization'] : '';
+                $city = isset( $_POST['city'] ) ? trim( $_POST['city'] ) : '';
 		$state = isset( $_POST['state'] ) ? trim( $_POST['state'] ) : '';
 
 		// init data

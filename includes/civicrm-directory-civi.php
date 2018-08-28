@@ -238,7 +238,7 @@ class CiviCRM_Directory_Civi {
 				    $params['state_province_id'] = $stateID['values'][0]['id'];
 					}
 			  }
-				if ($specialization !== '') {
+				if ($specialization !== []) {
 				  $params['custom_93'] = $specialization;
 			  }
 				break;
