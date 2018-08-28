@@ -239,7 +239,7 @@ class CiviCRM_Directory_Civi {
 					}
 			  }
 				if ($specialization !== '') {
-				  $params['custom_93'] = array($specialization);
+				  $params['custom_93'] = $specialization;
 			  }
 				break;
 		}

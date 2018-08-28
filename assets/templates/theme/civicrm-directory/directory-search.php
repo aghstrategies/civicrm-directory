@@ -23,11 +23,10 @@
 		}
 		if (isset($result['values'][0])) {
 			foreach ($result['values'] as $value) {
-				echo '<input type="checkbox" name=' . $value['value'] . 'value=' . $value['value'] . '> ' . $value['label'] . '<br/>';
+				echo '<input type="checkbox" name=civicrm_directory_specialization_search_string value=' . $value['value'] . '> ' . $value['label'] . '<br/>';
 			}
 		}
 		?>
-		<input type="text" id="civicrm_directory_specialization_search_string" name="civicrm_directory_specialization_search_string" value="">
 <br/>
 		<label for="civicrm_directory_city_search_string"><?php esc_html_e( 'Search by City', 'civicrm-directory' ); ?></label>
 		<input type="text" id="civicrm_directory_city_search_string" name="civicrm_directory_city_search_string" value="">
