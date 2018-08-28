@@ -183,7 +183,7 @@ class CiviCRM_Directory_Civi {
 	 * @param str $query The filter query string.
 	 * @return array $contacts The contacts in the CiviCRM group.
 	 */
-	public function contacts_get_for_group( $group_id, $types = array(), $mode = 'all', $field = '', $query = '' ) {
+	public function contacts_get_for_group( $group_id, $types = array(), $mode = 'all', $field = '', $query = '', $specialization = '', $city = '', $state = '' ) {
 
 		// init return
 		$contacts = array();
@@ -220,6 +220,27 @@ class CiviCRM_Directory_Civi {
 				break;
 			case 'name' :
 				$params[$field] = array( 'LIKE' => '%' . $query . '%' );
+				if ($city !== '') {
+				  $params['city'] = array('LIKE' => '%' . $city . '%');
+			  }
+				if ($state !== '') {
+					try {
+					  $stateID = civicrm_api3('StateProvince', 'get', [
+	            'sequential' => 1,
+	            'name' => $state,
+            ]);
+				  }
+					catch (CiviCRM_API3_Exception $e) {
+			      $error = $e->getMessage();
+			      CRM_Core_Error::debug_log_message($error);
+			    }
+					if (isset($stateID['values'][0])) {
+				    $params['state_province_id'] = $stateID['values'][0]['id'];
+					}
+			  }
+				if ($specialization !== '') {
+				  $params['custom_13'] = array('LIKE' => '%' . $specialization . '%');
+			  }
 				break;
 		}
 
@@ -883,6 +904,3 @@ class CiviCRM_Directory_Civi {
 
 
 } // class ends
-
-
-
