@@ -208,8 +208,16 @@ var CiviCRM_Directory_Search = CiviCRM_Directory_Search || {};
 				// find search string
 				search = me.form.find( '#civicrm_directory_search_string' ).val();
 
+				spobj = $("input[type=checkbox][name=civicrm_directory_specialization_search_string]:checked");
+				specialization = [];
+				$.each(spobj, function( key, value) {
+					specialization.push($(value).val());
+				})
+				city = me.form.find('#civicrm_directory_city_search_string').val();
+				state = me.form.find('#civicrm_directory_state_search_string').val();
+
 				// send AJAX request
-				me.send( search );
+				me.send( search, specialization, city, state );
 
 				// --<
 				return false;
@@ -248,8 +256,7 @@ var CiviCRM_Directory_Search = CiviCRM_Directory_Search || {};
 		 *
 		 * @param {Integer} search The search string to filter by.
 		 */
-		this.send = function( search ) {
-
+		this.send = function( search, specialization, city, state ) {
 			// use jQuery post
 			$.post(
 
@@ -263,6 +270,9 @@ var CiviCRM_Directory_Search = CiviCRM_Directory_Search || {};
 
 					// data to send
 					search: search,
+					specialization: specialization,
+					city: city,
+					state: state,
 					post_id: CiviCRM_Directory_Search.settings.get_setting( 'post_id' )
 
 				},
@@ -315,4 +325,3 @@ jQuery(document).ready(function($) {
 	CiviCRM_Directory_Search.search.dom_ready();
 
 }); // end document.ready()
-
