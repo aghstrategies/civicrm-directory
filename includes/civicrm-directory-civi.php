@@ -228,6 +228,7 @@ class CiviCRM_Directory_Civi {
 					  $stateID = civicrm_api3('StateProvince', 'get', [
 	            'sequential' => 1,
 	            'name' => $state,
+		    'country_id' => 1228,
             ]);
 				  }
 					catch (CiviCRM_API3_Exception $e) {
