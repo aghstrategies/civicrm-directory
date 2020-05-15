@@ -342,7 +342,7 @@ class CiviCRM_Directory_Browse {
 
 		// get listing markup
 		$markup .= $this->get_listing_markup( $results, $letter, $post_id );
-
+		$markup = apply_filters('civicrm_directory_ajax_markup', $markup, $results, $letter, $post_id);
 		// add to data array
 		$data['listing'] = $markup;
 
