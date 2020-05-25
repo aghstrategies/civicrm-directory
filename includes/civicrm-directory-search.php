@@ -229,6 +229,10 @@ class CiviCRM_Directory_Search {
 		// get search
 		$search = isset( $_POST['search'] ) ? trim( $_POST['search'] ) : '';
 
+		$specialization = isset( $_POST['specialization'] ) ? $_POST['specialization'] : '';
+                $city = isset( $_POST['city'] ) ? trim( $_POST['city'] ) : '';
+		$state = isset( $_POST['state'] ) ? trim( $_POST['state'] ) : '';
+
 		// init data
 		$data = array(
 			'search' => $search,
@@ -238,7 +242,7 @@ class CiviCRM_Directory_Search {
 		$post_id = isset( $_POST['post_id'] ) ? absint( trim( $_POST['post_id'] ) ) : '';
 
 		// do query
-		$results = $this->get_results( $post_id, $search );
+		$results = $this->get_results( $post_id, $search, $specialization, $city, $state );
 
 		// build locations array
 		$locations = array();
@@ -294,7 +298,7 @@ class CiviCRM_Directory_Search {
 	 * @param str $search The search string.
 	 * @return array $results The array of contact data.
 	 */
-	public function get_results( $post_id, $search ) {
+	public function get_results( $post_id, $search, $specialization, $city, $state ) {
 
 		// init return
 		$results = array();
@@ -322,7 +326,10 @@ class CiviCRM_Directory_Search {
 				'Individual',
 				'name',
 				'last_name',
-				$search
+				$search,
+				$specialization,
+				$city,
+				$state
 			);
 		}
 
@@ -334,7 +341,10 @@ class CiviCRM_Directory_Search {
 				'Household',
 				'name',
 				'household_name',
-				$search
+				$search,
+				$specialization,
+				$city,
+				$state
 			);
 		}
 
@@ -346,7 +356,10 @@ class CiviCRM_Directory_Search {
 				'Organization',
 				'name',
 				'organization_name',
-				$search
+				$search,
+				$specialization,
+				$city,
+				$state
 			);
 		}
 
@@ -484,7 +497,3 @@ function civicrm_directory_search() {
 	civicrm_directory()->search->insert_markup();
 
 }
-
-
-
-
